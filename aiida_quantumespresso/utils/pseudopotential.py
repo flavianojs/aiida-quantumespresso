@@ -116,7 +116,7 @@ def get_pseudos_from_dict(structure, pseudos_uuids):
                 'No node found associated to the UUID {} given for element {} '
                 'in the provided pseudos_uuids dictionary'.format(uuid, symbol)
             ) from exception
-        if not isinstance(upf, UpfData):
+        if not isinstance(upf, (LegacyUpfData, UpfData)):
             raise ValueError(f'Node with UUID {uuid} is not a UpfData')
         if upf.element != symbol:
             raise ValueError(f'Node<{uuid}> is associated to element {upf.element} and not to {symbol} as expected')
