@@ -56,6 +56,11 @@ class PhParser(Parser):
         self.emit_logs(logs)
         self.out('output_parameters', orm.Dict(dict=parsed_data))
 
+        # If the stdout was incomplete, most likely the job was interrupted before it could cleanly finish, so the
+        # output files are most likely corrupt and cannot be restarted from
+        if 'ERROR_OUTPUT_STDOUT_INCOMPLETE' in logs['error']:
+            return self.exit_codes.ERROR_OUTPUT_STDOUT_INCOMPLETE
+
         if 'ERROR_OUT_OF_WALLTIME' in logs['error']:
             return self.exit_codes.ERROR_OUT_OF_WALLTIME
 

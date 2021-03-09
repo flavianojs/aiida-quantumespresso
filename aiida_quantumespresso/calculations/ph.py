@@ -17,7 +17,7 @@ class PhCalculation(CalcJob):
     """`CalcJob` implementation for the ph.x code of Quantum ESPRESSO."""
 
     # Keywords that cannot be set by the user but will be set by the plugin
-    _blocked_keywords = [('INPUTPH', 'outdir'), ('INPUTPH', 'iverbosity'), ('INPUTPH', 'prefix'), ('INPUTPH', 'fildyn'),
+    _blocked_keywords = [('INPUTPH', 'outdir'), ('INPUTPH', 'verbosity'), ('INPUTPH', 'prefix'), ('INPUTPH', 'fildyn'),
                          ('INPUTPH', 'ldisp'), ('INPUTPH', 'nq1'), ('INPUTPH', 'nq2'), ('INPUTPH', 'nq3'),
                          ('INPUTPH', 'qplot')]
 
@@ -152,7 +152,7 @@ class PhCalculation(CalcJob):
             raise exceptions.InputValidationError('required namelist INPUTPH not specified')
 
         parameters['INPUTPH']['outdir'] = self._OUTPUT_SUBFOLDER
-        parameters['INPUTPH']['iverbosity'] = 1
+        parameters['INPUTPH']['verbosity'] = 1
         parameters['INPUTPH']['prefix'] = self._PREFIX
         parameters['INPUTPH']['fildyn'] = self._OUTPUT_DYNAMICAL_MATRIX_PREFIX
 
