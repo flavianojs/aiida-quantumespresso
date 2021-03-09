@@ -43,6 +43,8 @@ class PwCalculation(BasePwCpInputGenerator):
     # Not using symlink in pw to allow multiple nscf to run on top of the same scf
     _default_symlink_usage = False
 
+    _ENABLED_PARALLELIZATION_FLAGS = ('npool', 'nband', 'ntg', 'ndiag')
+
     @classproperty
     def xml_filepaths(cls):
         """Return a list of XML output filepaths relative to the remote working directory that should be retrieved."""
@@ -143,6 +145,7 @@ class PwCalculation(BasePwCpInputGenerator):
             message='The electronic minimization cycle did not reach self-consistency.')
         spec.exit_code(541, 'ERROR_SYMMETRY_NON_ORTHOGONAL_OPERATION',
             message='The variable cell optimization broke the symmetry of the k-points.')
+        # yapf: enable
 
     @classproperty
     def filename_input_hubbard_parameters(cls):
